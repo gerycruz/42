@@ -38,6 +38,7 @@
 #include "fswkit.h"
 #include "msis86kit.h"
 
+#include <yaml.h>
 /*
 ** #ifdef __cplusplus
 ** namespace _42 {

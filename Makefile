@@ -126,7 +126,7 @@ ifeq ($(42PLATFORM),__MSYS__)
       GLEW = $(EXTERNDIR)GLEW/
       GLUT = $(EXTERNDIR)freeglut/
       LIBS =  -lopengl32 -lglu32 -lfreeglut -lws2_32 -lglew32
-      LFLAGS = -L $(GLUT)lib/ -L $(GLEW)lib/
+      LFLAGS = -L $(GLUT)lib/ -L $(GLEW)lib/ -lyaml 
       GUIOBJ = $(OBJ)42GlutGui.o $(OBJ)glkit.o 
       GLINC = -I $(GLEW)include/GL/ -I $(GLUT)include/GL/
       ARCHFLAG = -D GLUT_NO_LIB_PRAGMA -D GLUT_NO_WARNING_DISABLE -D GLUT_DISABLE_ATEXIT_HACK
