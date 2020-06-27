@@ -1,0 +1,147 @@
+# <<<<<<<<<<<<<<<<<  42: The Mostly Harmless Simulator  >>>>>>>>>>>>>>>>>
+# ************************** Simulation Control **************************
+
+time_mode: FAST #(FAST, REAL, EXTERNAL, or NOS3)
+
+# Sim Duration, Step Size, Output Interval [sec]
+sim_length: 10000.0
+sim_step_size: 0.1
+file_step_size: 1.0
+
+# Graphics
+graphics: true
+
+# Command File
+cmd_file: Inp_Cmd.txt  
+
+# !  Output Environmental Torques to Files
+env_dist_file: false                           
+
+# **************************  Reference Orbits  **************************
+ref_orb_num: 1                               !  Number of Reference Orbits
+use_orb_file: true
+filename: Orb_LEO.txt
+
+# *****************************  Spacecraft  *****************************
+sc_num: 1                               !  Number of Spacecraft
+use_sc_file: true
+filename: SC_Simple.txt           !  Existence, RefOrb, Input file for SC 0
+
+# ***************************** Environment  *****************************
+start_date: 05 07 2019                      !  Date (Month, Day, Year)
+start_time: 12 00 00.00                     !  Greenwich Mean Time (Hr,Min,Sec)
+offset: 0.0                             
+
+# Solar Radiation Environment 
+## Model (TWOSIGMA_KP, NOMINAL or USER_DEFINED)
+model: USER_DEFINED                   
+
+### If USER_DEFINED
+solar_f10.7: 230.0                           
+solar_ap: 100.0                          
+
+# Magnetic Field Model
+## Magfield (NONE,DIPOLE,IGRF)
+model: IGRF                            
+igrf_degree: 8   
+igrf_order: 8                           
+
+# Gravity models
+## Earth
+body: earth
+- grav_n: 8
+- grav_m: 8
+
+## Luna
+body: luna
+- grav_n: 2
+- grav_m: 0
+
+## Mars
+body: mars
+- grav_n: 2
+- grav_m: 0
+
+# Other Disturbance Forces and Torques
+disturbance: aero
+- force: true
+- torque: true
+
+disturbance: aero-shadow
+- force: false
+- torque: false
+
+disturbance: gravity #gravity force is ignored
+- torque: false
+
+disturbance: solar
+- force: false
+- torque: false
+
+disturbance: solar-shadow
+- force: false
+- torque: false
+
+disturbance: gravity-perturbation # No perturbation torque
+- force: false
+
+disturbance: joint
+- all: false
+
+disturbance: thruster-plume
+- all: false
+
+disturbance: reaction-wheel
+- all: false
+
+disturbance: contact
+- all: false
+
+disturbance: slosh
+- all: false
+
+# ********************* Celestial Bodies of Interest *********************
+## Ephem Option (MEAN or DE430)
+ephem_type: mean
+- body: mercury
+- body: venus
+- body: earth-moon
+- body: mars
+- body: jupiter
+- body: saturn
+- body: uranus
+- body: neptune
+- body: pluto
+- body: asteroids
+
+# ***************** Lagrange Point Systems of Interest ******************
+l_bodies: false
+- l_body: earth-moon
+- l_body: sun-earth
+- l_body: sun-jupiter
+
+
+# ************************* Ground Stations ***************************
+ground_stations:
+  - name: GSFC
+    - world: earth
+    - longitude: -77
+    - latitude: 37
+  - name: South Point
+    - world: earth
+    - longitude: -155.6
+    - latitude: 19.0
+  - name: Dongara
+    - world: earth
+    - longitude: 115.4
+    - latitude:  -29.0
+  - name: Santiago
+    - world: earth
+    - longitude: -71.0
+    - latitude:  -33.0
+  - name: Moon Base Alpha
+    - world: luna
+    - longitude: 45.0
+    - latitude:  45.0
+    
+
